@@ -6,14 +6,11 @@ class Solution(object):
         """
         ans = 0
         m = len(nums)
+        dp = [{} for _ in range(m)]
         for i in range(m):
-            for j in range(i + 1, m):
-                diff = nums[j] - nums[i]
-                cur = 2
-                for k in range(j + 1, m):
-                    if nums[k] - nums[j] == diff:
-                        cur += 1
-                        j = k
-                ans = max(ans, cur)
+            for j in range(i):
+                diff = nums[i] - nums[j]
+                dp[i][diff] = dp[j].get(diff, 1) + 1
+                ans = max(ans, dp[i][diff])
 
         return ans
