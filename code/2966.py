@@ -9,9 +9,7 @@ class Solution(object):
         ans = []
         for i in range(0, len(nums), 3):
             # 如三个值中任意两个值差值超过k, 则返回空数组
-            if abs(nums[i] - nums[i + 1]) > k\
-                    or abs(nums[i] - nums[i + 2]) > k\
-                    or abs(nums[i + 1] - nums[i + 2]) > k:
+            if abs(nums[i] - nums[i + 2]) > k:
                 return []
             ans.append(nums[i:i+3])
 
