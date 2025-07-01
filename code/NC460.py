@@ -14,7 +14,7 @@ class LFUCache:
     def __init__(self, capacity):
         self.capacity = capacity
         self.key_to_node = dict()
-        def new_list() -> Node:
+        def new_list():
             dummy = Node()  # 哨兵节点
             dummy.prev = dummy
             dummy.next = dummy
