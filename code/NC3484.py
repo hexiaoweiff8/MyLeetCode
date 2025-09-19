@@ -4,23 +4,22 @@ class Spreadsheet(object):
         """
         :type rows: int
         """
-        # 修复：为每一行创建独立的列表，避免引用同一个列表对象
-        self.rows = [[0 for _ in range(26)] for _ in range(rows)]
-
+        # self.rows = [[0 for _ in range(26)] for _ in range(rows)]
+        self.cells = {}
     def setCell(self, cell, value):
         """
         :type cell: str
         :type value: int
         :rtype: None
         """
-        self.rows[int(cell[1:]) - 1][ord(cell[0]) - ord('A')] = value
+        self.cells[cell] = value
 
     def resetCell(self, cell):
         """
         :type cell: str
         :rtype: None
         """
-        self.rows[int(cell[1:]) - 1][ord(cell[0]) - ord('A')] = 0
+        self.cells.pop(cell, None)
 
     def getValue(self, formula):
         """
@@ -33,7 +32,7 @@ class Spreadsheet(object):
         ans = 0
         for cell in cells:
             if cell[0].isalpha():
-                ans += self.rows[int(cell[1:]) - 1][ord(cell[0]) - ord('A')]
+                ans += self.cells.get(cell, 0)
             else:
                 ans += int(cell)
         return ans
